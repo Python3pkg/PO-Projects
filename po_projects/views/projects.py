@@ -3,7 +3,7 @@
 Page document views
 """
 import json, os
-from cStringIO import StringIO
+from io import StringIO
 
 #from django.db import models
 from django.conf import settings

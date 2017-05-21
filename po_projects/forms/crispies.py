@@ -18,7 +18,7 @@ def SimpleRowColumn(field, *args, **kwargs):
     """
     Shortcut for simple row with only a full column
     """
-    if isinstance(field, basestring):
+    if isinstance(field, str):
         field = Field(field, *args, **kwargs)
     return Row(
         Column(field),
@@ -43,9 +43,9 @@ class SourceTextField(UneditableField):
         value = normalize_newlines(value)
         paras = re.split('\n{2,}', value)
         if autoescape:
-            paras = ['<p>%s</p>' % escape(p).replace('\n', u'<span class="explicit_cr">↵</span><br />') for p in paras]
+            paras = ['<p>%s</p>' % escape(p).replace('\n', '<span class="explicit_cr">↵</span><br />') for p in paras]
         else:
-            paras = ['<p>%s</p>' % p.replace('\n', u'<span class="explicit_cr">↵</span><br />') for p in paras]
+            paras = ['<p>%s</p>' % p.replace('\n', '<span class="explicit_cr">↵</span><br />') for p in paras]
         return '\n\n'.join(paras)
 
     def render(self, form, form_style, context, template_pack=TEMPLATE_PACK):
@@ -71,9 +71,9 @@ def source_formatter(value, autoescape=True):
     value = normalize_newlines(value)
     paras = re.split('\n{2,}', value)
     if autoescape:
-        paras = ['<p>%s</p>' % escape(p).replace('\n', u'<span class="explicit_cr">↵</span><br />') for p in paras]
+        paras = ['<p>%s</p>' % escape(p).replace('\n', '<span class="explicit_cr">↵</span><br />') for p in paras]
     else:
-        paras = ['<p>%s</p>' % p.replace('\n', u'<span class="explicit_cr">↵</span><br />') for p in paras]
+        paras = ['<p>%s</p>' % p.replace('\n', '<span class="explicit_cr">↵</span><br />') for p in paras]
     return '\n\n'.join(paras)
 
 
@@ -81,10 +81,10 @@ def build_locations(locations):
     """
     Output a bullet list from message's location items
     """
-    output = u"<ul>{0}</ul>"
+    output = "<ul>{0}</ul>"
     items = []
     for location, lineno in locations:
-        items.append(u"<li>{location}:{lineno}</li>".format(location=location, lineno=lineno))
+        items.append("<li>{location}:{lineno}</li>".format(location=location, lineno=lineno))
     return output.format('\n'.join(items))
 
 

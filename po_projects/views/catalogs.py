@@ -2,7 +2,7 @@
 """
 Page document views
 """
-import json, os, StringIO
+import json, os, io
 
 from django.conf import settings
 from django.core.urlresolvers import reverse
@@ -174,6 +174,6 @@ class CatalogMessagesExportView(LoginRequiredMixin, DownloadMixin, generic.View)
     def get_content(self, context):
         forged_catalog = self.catalog.get_babel_catalog()
             
-        fpw = StringIO.StringIO()
+        fpw = io.StringIO()
         write_po(fpw, forged_catalog, sort_by_file=False, ignore_obsolete=True, include_previous=False)
         return fpw.getvalue()

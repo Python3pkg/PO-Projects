@@ -1,7 +1,7 @@
 """
 Serializers for REST entries
 """
-from cStringIO import StringIO
+from io import StringIO
 
 from django.forms import widgets
 

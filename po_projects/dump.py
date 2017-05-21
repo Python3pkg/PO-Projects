@@ -2,7 +2,7 @@
 """
 Dump tools
 """
-from cStringIO import StringIO
+from io import StringIO
 import json, os, tarfile, time
 
 from babel.messages.pofile import write_po

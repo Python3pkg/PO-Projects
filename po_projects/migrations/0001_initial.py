@@ -9,46 +9,46 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
         # Adding model 'Project'
-        db.create_table(u'po_projects_project', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+        db.create_table('po_projects_project', (
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('name', self.gf('django.db.models.fields.CharField')(max_length=150)),
             ('slug', self.gf('django.db.models.fields.SlugField')(unique=True, max_length=75)),
         ))
-        db.send_create_signal(u'po_projects', ['Project'])
+        db.send_create_signal('po_projects', ['Project'])
 
         # Adding model 'ProjectVersion'
-        db.create_table(u'po_projects_projectversion', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+        db.create_table('po_projects_projectversion', (
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('project', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['po_projects.Project'])),
             ('version', self.gf('django.db.models.fields.SmallIntegerField')()),
             ('header_comment', self.gf('django.db.models.fields.TextField')()),
             ('mime_headers', self.gf('django.db.models.fields.TextField')()),
         ))
-        db.send_create_signal(u'po_projects', ['ProjectVersion'])
+        db.send_create_signal('po_projects', ['ProjectVersion'])
 
         # Adding model 'TemplateMsg'
-        db.create_table(u'po_projects_templatemsg', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+        db.create_table('po_projects_templatemsg', (
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('project_version', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['po_projects.ProjectVersion'])),
             ('message', self.gf('django.db.models.fields.TextField')()),
             ('locations', self.gf('django.db.models.fields.TextField')()),
             ('flags', self.gf('django.db.models.fields.TextField')()),
         ))
-        db.send_create_signal(u'po_projects', ['TemplateMsg'])
+        db.send_create_signal('po_projects', ['TemplateMsg'])
 
         # Adding model 'Catalog'
-        db.create_table(u'po_projects_catalog', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+        db.create_table('po_projects_catalog', (
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('project_version', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['po_projects.ProjectVersion'])),
             ('locale', self.gf('django.db.models.fields.CharField')(max_length=50)),
             ('header_comment', self.gf('django.db.models.fields.TextField')()),
             ('mime_headers', self.gf('django.db.models.fields.TextField')()),
         ))
-        db.send_create_signal(u'po_projects', ['Catalog'])
+        db.send_create_signal('po_projects', ['Catalog'])
 
         # Adding model 'TranslationMsg'
-        db.create_table(u'po_projects_translationmsg', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+        db.create_table('po_projects_translationmsg', (
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('template', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['po_projects.TemplateMsg'])),
             ('catalog', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['po_projects.Catalog'])),
             ('message', self.gf('django.db.models.fields.TextField')(blank=True)),
@@ -56,66 +56,66 @@ class Migration(SchemaMigration):
             ('pluralizable', self.gf('django.db.models.fields.BooleanField')(default=False)),
             ('python_format', self.gf('django.db.models.fields.BooleanField')(default=False)),
         ))
-        db.send_create_signal(u'po_projects', ['TranslationMsg'])
+        db.send_create_signal('po_projects', ['TranslationMsg'])
 
 
     def backwards(self, orm):
         # Deleting model 'Project'
-        db.delete_table(u'po_projects_project')
+        db.delete_table('po_projects_project')
 
         # Deleting model 'ProjectVersion'
-        db.delete_table(u'po_projects_projectversion')
+        db.delete_table('po_projects_projectversion')
 
         # Deleting model 'TemplateMsg'
-        db.delete_table(u'po_projects_templatemsg')
+        db.delete_table('po_projects_templatemsg')
 
         # Deleting model 'Catalog'
-        db.delete_table(u'po_projects_catalog')
+        db.delete_table('po_projects_catalog')
 
         # Deleting model 'TranslationMsg'
-        db.delete_table(u'po_projects_translationmsg')
+        db.delete_table('po_projects_translationmsg')
 
 
     models = {
-        u'po_projects.catalog': {
+        'po_projects.catalog': {
             'Meta': {'object_name': 'Catalog'},
             'header_comment': ('django.db.models.fields.TextField', [], {}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'locale': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
             'mime_headers': ('django.db.models.fields.TextField', [], {}),
-            'project_version': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['po_projects.ProjectVersion']"})
+            'project_version': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['po_projects.ProjectVersion']"})
         },
-        u'po_projects.project': {
+        'po_projects.project': {
             'Meta': {'object_name': 'Project'},
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '150'}),
             'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '75'})
         },
-        u'po_projects.projectversion': {
+        'po_projects.projectversion': {
             'Meta': {'object_name': 'ProjectVersion'},
             'header_comment': ('django.db.models.fields.TextField', [], {}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'mime_headers': ('django.db.models.fields.TextField', [], {}),
-            'project': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['po_projects.Project']"}),
+            'project': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['po_projects.Project']"}),
             'version': ('django.db.models.fields.SmallIntegerField', [], {})
         },
-        u'po_projects.templatemsg': {
+        'po_projects.templatemsg': {
             'Meta': {'object_name': 'TemplateMsg'},
             'flags': ('django.db.models.fields.TextField', [], {}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'locations': ('django.db.models.fields.TextField', [], {}),
             'message': ('django.db.models.fields.TextField', [], {}),
-            'project_version': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['po_projects.ProjectVersion']"})
+            'project_version': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['po_projects.ProjectVersion']"})
         },
-        u'po_projects.translationmsg': {
+        'po_projects.translationmsg': {
             'Meta': {'object_name': 'TranslationMsg'},
-            'catalog': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['po_projects.Catalog']"}),
+            'catalog': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['po_projects.Catalog']"}),
             'fuzzy': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'message': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
             'pluralizable': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'python_format': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'template': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['po_projects.TemplateMsg']"})
+            'template': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['po_projects.TemplateMsg']"})
         }
     }
 

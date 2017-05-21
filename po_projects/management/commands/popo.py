@@ -2,7 +2,7 @@
 """
 Just a command line to test some things in development
 """
-from cStringIO import StringIO
+from io import StringIO
 import json, os, tarfile, time
 
 from optparse import OptionValueError, make_option
@@ -75,31 +75,31 @@ class Command(BaseCommand):
             version="0.2.0"
         )
         
-        print "before add:", len(forged_catalog)
+        print("before add:", len(forged_catalog))
         
         for entry in catalog.translationmsg_set.all().order_by('id'):
             locations = [tuple(item) for item in json.loads(entry.template.locations)]
             forged_catalog.add(entry.template.message, string=entry.message, locations=locations, flags=entry.template.flags)
         
-        print "after add:", len(forged_catalog)
-        print "errors:", [item for item in forged_catalog.check()]
+        print("after add:", len(forged_catalog))
+        print("errors:", [item for item in forged_catalog.check()])
         
-        print
-        print "---------------- Original"
+        print()
+        print("---------------- Original")
         fpw = StringIO()
         write_po(fpw, forged_catalog, sort_by_file=False, ignore_obsolete=True, include_previous=False)
-        print fpw.getvalue()
+        print(fpw.getvalue())
         fpw.close()
         
-        print
-        print "---------------- Updated"
+        print()
+        print("---------------- Updated")
         fp3 = open(os.path.join(toast_path, '0-3-0.pot'), 'r')
         template_catalog_3 = read_po(fp3)
         forged_catalog.update(template_catalog_3)
         
         fpw = StringIO()
         write_po(fpw, forged_catalog, sort_by_file=False, ignore_obsolete=True, include_previous=False)
-        print fpw.getvalue()
+        print(fpw.getvalue())
         fpw.close()
 
     def po_update(self):
@@ -121,33 +121,33 @@ class Command(BaseCommand):
         template_catalog_1.update(template_catalog_2)
         #print "after update:", len(catalog)
         
-        print catalog
+        print(catalog)
 
     def locale_tuple(self):
         """
         Testing locale identifier parsing attributes
         """
         l = Locale.parse('en-AU')
-        print "language:", l.language
-        print "territory:", l.territory
-        print "script:", l.script
-        print "variant:", l.variant
+        print("language:", l.language)
+        print("territory:", l.territory)
+        print("script:", l.script)
+        print("variant:", l.variant)
         
-        print get_locale_identifier((l.language, l.territory, l.script, l.variant), sep='_')
+        print(get_locale_identifier((l.language, l.territory, l.script, l.variant), sep='_'))
 
     def check_locale(self):
         """
         Testing locale identifier parsing with error
         """
-        print Locale.parse('fr')
+        print(Locale.parse('fr'))
         try:
-            print Locale.parse('francais')
+            print(Locale.parse('francais'))
         except ValueError:
-            print 'ValueError!'
+            print('ValueError!')
         except UnknownLocaleError:
-            print 'UnknownLocaleError!'
-        print Locale.parse('zh_CN')
-        print Locale.parse('en_AU')
+            print('UnknownLocaleError!')
+        print(Locale.parse('zh_CN'))
+        print(Locale.parse('en_AU'))
 
     def open_po(self):
         """
@@ -160,8 +160,8 @@ class Command(BaseCommand):
             except:
                 raise CommandError("Invalid PO file")
             else:
-                print catalog.project
-                print json.dumps(catalog.mime_headers, indent=4)
+                print(catalog.project)
+                print(json.dumps(catalog.mime_headers, indent=4))
             finally:
                 fp.close()
         else:

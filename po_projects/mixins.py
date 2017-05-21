@@ -45,7 +45,7 @@ class DownloadMixin(object):
         response['Content-Disposition'] = 'attachment; filename={0}'.format(self.get_filename(context))
         # Read the content file object or string, append it to response and close it
         content = self.get_content(context)
-        if isinstance(content, basestring):
+        if isinstance(content, str):
             response.write(content)
         else:
             response.write(content.read())

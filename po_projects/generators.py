@@ -98,7 +98,7 @@ def update_catalogs(project, previous_version, current_version):
         
         # Merge previous translations into template items
         entries = []
-        for template_id,template_instance in current_templatemsg_map.items():
+        for template_id,template_instance in list(current_templatemsg_map.items()):
             # Defaults
             message = plural_message = ''
             fuzzy = pluralizable = python_format = False

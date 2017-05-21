@@ -50,8 +50,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'PO-Projects'
-copyright = u'2015, David THENON'
+project = 'PO-Projects'
+copyright = '2015, David THENON'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -203,8 +203,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  ('index', 'PO-Projects.tex', u'PO-Projects Documentation',
-   u'David THENON', 'manual'),
+  ('index', 'PO-Projects.tex', 'PO-Projects Documentation',
+   'David THENON', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -233,8 +233,8 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'po-projects', u'PO-Projects Documentation',
-     [u'David THENON'], 1)
+    ('index', 'po-projects', 'PO-Projects Documentation',
+     ['David THENON'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -247,8 +247,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'PO-Projects', u'PO-Projects Documentation',
-   u'David THENON', 'PO-Projects', 'One line description of project.',
+  ('index', 'PO-Projects', 'PO-Projects Documentation',
+   'David THENON', 'PO-Projects', 'One line description of project.',
    'Miscellaneous'),
 ]
 
